@@ -1,18 +1,22 @@
 ---
 name: music-to-svg
-description: 'Use the project converter script to render MusicXML to SVG markdown image output. Write MusicXML to a temp file, then pass --file.'
-argument-hint: 'MusicXML string'
+description: Use the converter script to render a MusicXML file to SVG markdown image output.
+argument-hint: Any request that includes a MusicXML file path (e.g., /path/to/file.musicxml)
 ---
 
-Use only these rules:
+## When to Use
 
-1. Use the `write_file` tool to save the MusicXML content to a file (e.g. `/tmp/score.musicxml`).
+- The user asks to render/convert MusicXML to SVG (or markdown image output), and
+- The user provides a concrete MusicXML file path.
 
-2. Run script `scripts/convert.py --file /tmp/score.musicxml`
+## How to Use this Skill
 
-3. Do not invoke renderer CLI commands directly.
+1. Run the script, passing the MusicXML file path as an argument:
+`scripts/convert.py -i <musicxml_path>`
 
-4. Output is always stdout markdown image:
+2. Do not search, read or inspect the MusicXML file yourself.
+
+3. Output is always stdout markdown image:
 `![score](data:image/svg+xml;base64,...)`
 
-5. Render the image as markdown with the base64-encoded SVG data URI. Do not return raw SVG or a file path.
+4. Render the image as markdown with the base64-encoded SVG data URI. Do not return raw SVG or a file path.
