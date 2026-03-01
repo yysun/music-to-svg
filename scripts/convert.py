@@ -41,7 +41,7 @@ def musicxml_to_svg(musicxml_path: str, svg_path: str, verovio_path: Optional[st
 
     vr = verovio_path or _find_verovio_candidate()
     if not vr:
-        raise RuntimeError("Verovio CLI not found on PATH. Install verovio or pass -v.")
+        raise RuntimeError("Verovio CLI not found on PATH. Install verovio.")
 
     _call_verovio_export(vr, musicxml_path, svg_path)
 
@@ -88,11 +88,10 @@ def musicxml_string_to_svg_string(xml_string: str, verovio_path: Optional[str] =
 
 def main(argv: Optional[list[str]] = None) -> int:
     parser = argparse.ArgumentParser(description="Convert MusicXML to SVG using Verovio CLI")
-    parser.add_argument("-i", "--input", "--file", required=True, help="Input MusicXML file")
-    parser.add_argument("-v", "--verovio", required=False, help="Path to verovio binary")
+    parser.add_argument("musicxml_path", help="Input MusicXML file")
     args = parser.parse_args(argv)
 
-    svg = musicxml_to_svg_string(args.input, verovio_path=args.verovio)
+    svg = musicxml_to_svg_string(args.musicxml_path)
     sys.stdout.write(_svg_to_markdown_data_uri(svg))
     return 0
 

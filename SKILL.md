@@ -12,11 +12,9 @@ argument-hint: Any request that includes a MusicXML file path (e.g., /path/to/fi
 ## How to Use this Skill
 
 1. Run the script, passing the MusicXML file path as an argument:
-`scripts/convert.py -i <musicxml_path>`
+`scripts/convert.py <musicxml_path>`
 
 2. Do not search, read or inspect the MusicXML file yourself.
 
-3. Output is always stdout markdown image:
-`![score](data:image/svg+xml;base64,...)`
+3. Done.
 
-4. Render the image as markdown with the base64-encoded SVG data URI. Do not return raw SVG or a file path.

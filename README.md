@@ -19,11 +19,34 @@ Useful options:
 - Install globally: `npx skills add yysun/music-to-svg -g`
 - Skip prompts: `npx skills add yysun/music-to-svg -y`
 
+## Local Setup (After `npx skills add`)
+
+If you want to run or test this repository locally, follow this exact sequence:
+
+1. Install Verovio (macOS):
+
+```bash
+brew install verovio
+```
+
+2. Create and activate a virtual environment:
+
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+```
+
+3. Install Python dependencies:
+
+```bash
+pip install -r requirements.txt
+```
+
 ## Skill Purpose
 
 - Accept MusicXML input (typically a string)
 - Write input to a temporary `.musicxml` file
-- Run `scripts/convert.py --file <temp-file>`
+- Run `scripts/convert.py <temp-file>`
 - Return markdown image output on stdout (not raw SVG, not file paths)
 
 ## Skill Rules
@@ -31,28 +54,16 @@ Useful options:
 The skill behavior is:
 
 1. Save MusicXML content to a file (for example `/tmp/score.musicxml`).
-2. Execute `scripts/convert.py --file /tmp/score.musicxml`.
+2. Execute `scripts/convert.py /tmp/score.musicxml`.
 3. Do not call renderer CLI tools directly.
 4. Return stdout markdown output as `![score](data:image/svg+xml;base64,...)`.
 
-## Local Requirements
-
-- Python 3.9+
-- Python dependencies from `requirements.txt`
-- Verovio installed (for macOS: `brew install verovio`)
-
-Install Python dependency:
-
-```bash
-pip install -r requirements.txt
-```
-
-## Manual Verification
+## Local Usage (Manual Verification)
 
 Quick check from terminal:
 
 ```bash
-python scripts/convert.py --file /tmp/score.musicxml
+python scripts/convert.py /tmp/score.musicxml
 ```
 
 Expected output format:
